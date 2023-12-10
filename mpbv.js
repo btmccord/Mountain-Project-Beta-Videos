@@ -98,7 +98,7 @@ function getVids() {
         let hiddenComments = commentListDiv.querySelectorAll("table.mpbv-hidden").length;
         let newCommentsNum = comments.length - hiddenComments;
         let commentHeader = commentListDiv.children[0];
-        commentHeader.children[0].innerHTML = newCommentsNum + ' Comments';
+        commentHeader.children[0].innerText = newCommentsNum + ' Comments';
 
         //Add note
         let note = document.createElement('span');
