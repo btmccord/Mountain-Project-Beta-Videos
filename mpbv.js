@@ -1,6 +1,6 @@
 // Mountain Project Beta Videos
 // Main content script
-// Version 1
+// Version 1.0
 
 //Decalre constants
 const commentListIdBase =  'comments-Climb-Lib-Models-Route-';
@@ -43,7 +43,7 @@ function getVids() {
                 link.classList.add("mpbv-hidden");
                 let author,
                     commentText
-                if (mutipleVideos) {
+                if (mutipleVideos) { //For comments with mutiple video after the first video clone the comment and author html
                     author = comment.querySelectorAll(".bio")[0].cloneNode(true);
                     commentText = comment.querySelectorAll(".comment-body")[0].cloneNode(true);
                 } else {
@@ -83,6 +83,7 @@ function getVids() {
             iframe.title = "YouTube video player";
             iframe.setAttribute('allowFullScreen', '');
             videoContainer.appendChild(iframe);
+            //Move author and comment html to below video or add if a mutiple comment video
             videoContainer.appendChild(video.author);
             videoContainer.appendChild(video.comment);
             videoDiv.appendChild(videoContainer);
@@ -98,6 +99,8 @@ function getVids() {
         let newCommentsNum = comments.length - hiddenComments;
         let commentHeader = commentListDiv.children[0];
         commentHeader.children[0].innerHTML = newCommentsNum + ' Comments';
+
+        //Add note
         let note = document.createElement('span');
         note.className = "mpbv-note";
         note.innerText = '( ' + hiddenComments + ' comments moved to video section )';

@@ -1,6 +1,6 @@
 // Mountain Project Beta Videos
 // Background script
-// Version 1
+// Version 1.0
 
 let pattern = "https://www.mountainproject.com/comments*";
 
