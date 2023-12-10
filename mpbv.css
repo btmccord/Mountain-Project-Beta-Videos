@@ -1,0 +1,27 @@
+/*  
+Mountain Project Beta Videos
+Main CSS
+Version 1
+*/
+
+#mpbv-videos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  }
+
+.mpbv-video {
+    width: 460px;
+    aspect-ratio: 1.8;
+}
+
+.mpbv-video-contianer br,
+.mpbv-hidden {
+  display: none;
+}
+
+.mpbv-note {
+  padding-left: .5rem;
+  font-size: .9rem;
+  font-style: italic;
+}
