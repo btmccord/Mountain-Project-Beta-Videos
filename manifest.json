@@ -5,7 +5,7 @@
   
     "description": "Adds a video gallery to routes with video links in the comments",
 
-    "permissions": ["webRequest", "<all_urls>"],
+    "permissions": ["webRequest", "*://*.mountainproject.com/*"],
 
     "background": {
       "scripts": ["background.js"]
