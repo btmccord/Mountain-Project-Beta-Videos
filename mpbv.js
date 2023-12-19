@@ -46,20 +46,20 @@ function getVids() {
                 let url = baseEmbedUrl.concat(ytLinks[1]);
                 link.classList.add("mpbv-hidden");
                 let author,
-                        commentText
-                    if (mutipleVideos) { //For comments with mutiple video after the first video clone the comment and author html
-                        author = comment.querySelectorAll(".bio")[0].cloneNode(true);
-                        commentText = comment.querySelectorAll(".comment-body")[0].cloneNode(true);
-                    } else {
-                        author = comment.querySelectorAll(".bio")[0];
-                        commentText = comment.querySelectorAll(".comment-body")[0];  
-                    }
-                    let video = new Video(url,author,commentText);
-                    comment.classList.add("mpbv-hidden");
-                    videoList.push(video);
-                    mutipleVideos = true;
+                    commentText
+                if (mutipleVideos) { //For comments with mutiple video after the first video clone the comment and author html
+                    author = comment.querySelectorAll(".bio")[0].cloneNode(true);
+                    commentText = comment.querySelectorAll(".comment-body")[0].cloneNode(true);
+                } else {
+                    author = comment.querySelectorAll(".bio")[0];
+                    commentText = comment.querySelectorAll(".comment-body")[0];  
                 }
+                let video = new Video(url,author,commentText);
+                comment.classList.add("mpbv-hidden");
+                videoList.push(video);
+                mutipleVideos = true;
             }
+        }
 
     };
     
