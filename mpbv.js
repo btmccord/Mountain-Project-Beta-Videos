@@ -40,26 +40,26 @@ function getVids() {
         //Find links that are youtube vids and add them and comment data to list
         let mutipleVideos = false;
         for (const link of links) {
-        let href = link.getAttribute('href');
-        let ytLinks = linkRe.exec(href);
-        if (ytLinks != null) {
-            let url = baseEmbedUrl.concat(ytLinks[1]);
-            link.classList.add("mpbv-hidden");
-            let author,
-                    commentText
-                if (mutipleVideos) { //For comments with mutiple video after the first video clone the comment and author html
-                    author = comment.querySelectorAll(".bio")[0].cloneNode(true);
-                    commentText = comment.querySelectorAll(".comment-body")[0].cloneNode(true);
-                } else {
-                    author = comment.querySelectorAll(".bio")[0];
-                    commentText = comment.querySelectorAll(".comment-body")[0];  
+            let href = link.getAttribute('href');
+            let ytLinks = linkRe.exec(href);
+            if (ytLinks != null) {
+                let url = baseEmbedUrl.concat(ytLinks[1]);
+                link.classList.add("mpbv-hidden");
+                let author,
+                        commentText
+                    if (mutipleVideos) { //For comments with mutiple video after the first video clone the comment and author html
+                        author = comment.querySelectorAll(".bio")[0].cloneNode(true);
+                        commentText = comment.querySelectorAll(".comment-body")[0].cloneNode(true);
+                    } else {
+                        author = comment.querySelectorAll(".bio")[0];
+                        commentText = comment.querySelectorAll(".comment-body")[0];  
+                    }
+                    let video = new Video(url,author,commentText);
+                    comment.classList.add("mpbv-hidden");
+                    videoList.push(video);
+                    mutipleVideos = true;
                 }
-                let video = new Video(url,author,commentText);
-                comment.classList.add("mpbv-hidden");
-                videoList.push(video);
-                mutipleVideos = true;
             }
-        }
 
     };
     
