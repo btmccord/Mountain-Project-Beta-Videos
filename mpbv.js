@@ -1,6 +1,6 @@
 // Mountain Project Beta Videos
 // Main content script
-// Version 1.0
+// Version 1.1
 
 //Decalre constants
 const commentListIdBase =  'comments-Climb-Lib-Models-Route-';
