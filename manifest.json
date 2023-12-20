@@ -18,6 +18,13 @@
       }
     ],
 
+    "browser_specific_settings": {
+      "gecko": {
+        "id": "{d1ba9de9-1d2b-4ef7-a161-8c8d9dd7fe4c}",
+        "strict_min_version": "109.0"
+      }
+    },
+
   "host_permissions": ["https://www.mountainproject.com/route/*"]
   }
   
