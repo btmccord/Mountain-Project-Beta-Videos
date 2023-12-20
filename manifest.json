@@ -1,16 +1,10 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
     "name": "Mountain Project Beta Videos",
-    "version": "1.0",
+    "version": "1.1",
   
     "description": "Adds a video gallery to routes with video links in the comments",
 
-    "permissions": ["webRequest", "*://*.mountainproject.com/*"],
-
-    "background": {
-      "scripts": ["background.js"]
-    },
-  
     "icons": {
       "48": "icons/mpbv48.png",
       "96": "icons/mpbv96.png"
@@ -18,11 +12,12 @@
     
     "content_scripts": [
       {
-        "matches": ["*://*.mountainproject.com/*"],
+        "matches": ["https://www.mountainproject.com/route/*"],
         "js": ["mpbv.js"],
-        "css": ["mpbv.css"],
-        "run_at": "document_idle"
+        "css": ["mpbv.css"]
       }
-    ]
+    ],
+
+  "host_permissions": ["https://www.mountainproject.com/route/*"]
   }
   

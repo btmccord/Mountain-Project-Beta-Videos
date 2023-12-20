@@ -28,7 +28,11 @@ function getVids() {
     let videoList = [];
 
     for (const comment of comments) {
-        let commentBody = comment.querySelector(".comment-body").children[0];
+        let commentBodyDiv = comment.querySelector(".comment-body");
+        if (commentBodyDiv == null || commentBodyDiv.children.length === 0) {
+            continue;
+        }
+        let commentBody = commentBodyDiv.children[0];
         let links = commentBody.getElementsByTagName("a");
         if (links.length === 0) {
             continue;
@@ -38,7 +42,7 @@ function getVids() {
         for (const link of links) {
             let href = link.getAttribute('href');
             let ytLinks = linkRe.exec(href);
-            if (ytLinks != null) {  
+            if (ytLinks != null) {
                 let url = baseEmbedUrl.concat(ytLinks[1]);
                 link.classList.add("mpbv-hidden");
                 let author,
@@ -110,13 +114,16 @@ function getVids() {
     } 
 } 
 
-//Listen for comments to finish loading
-browser.runtime.onMessage.addListener(data => {
-    let { trigger } = data;
-    if (trigger === 'loaded') {
-        setTimeout(getVids, 1000);
+// Listen for comments to finish loading
+const observer = new MutationObserver((mutationList) => {
+    for (const mutation of mutationList) {
+        if (mutation.type === "childList" && mutation.addedNodes.length > 0) {
+            getVids();
+        }
     }
-  });
+});
 
-
-
+observer.observe(document.getElementById(commentListId), {
+    childList: true,
+    subtree: true,
+});
