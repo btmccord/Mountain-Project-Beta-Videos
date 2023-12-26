@@ -2,6 +2,11 @@
 // Main content script
 // Version 1.2
 
+var browser;
+if (typeof browser === "undefined") {
+    browser = chrome;
+}
+
 //Decalre constants
 const commentListIdBase =  'comments-Climb-Lib-Models-Route-';
 const linkRe = /youtu\.*be\.*\w*\/(?:watch\?v=)?([^\?&\s]*)/im;

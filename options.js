@@ -1,3 +1,12 @@
+// Mountain Project Beta Videos
+// Options script
+// Version 1.2
+
+var browser;
+if (typeof browser === "undefined") {
+    browser = chrome;
+}
+
 function saveOptions(e) {
     e.preventDefault();
     browser.storage.sync.set({
