@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Mountain Project Beta Videos",
-    "version": "1.1",
+    "version": "1.2",
   
     "description": "Adds a video gallery to routes with video links in the comments",
 
@@ -16,6 +16,14 @@
         "js": ["mpbv.js"],
         "css": ["mpbv.css"]
       }
+    ],
+
+    "options_ui": {
+      "page": "options.html"
+    },
+
+    "permissions": [
+      "storage"
     ],
 
     "browser_specific_settings": {

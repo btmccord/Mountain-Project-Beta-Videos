@@ -20,7 +20,7 @@ Version 1.1
   display: none;
 }
 
-.mpbv-note {
+#mpbv-note {
   padding-left: .5rem;
   font-size: .9rem;
   font-style: italic;
