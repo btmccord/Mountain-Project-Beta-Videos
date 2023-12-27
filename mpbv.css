@@ -25,3 +25,19 @@ Version 1.1
   font-size: .9rem;
   font-style: italic;
 }
+
+@media (max-width: 1260px) {
+  #mpbv-videos {
+    grid-template-columns: 1fr;
+  }
+
+  .mpbv-video {
+    width: 100%;
+  }
+
+  .mpbv-note {
+    display: block;
+    padding-left: 0;
+    margin-bottom: 1em;
+  }
+}
