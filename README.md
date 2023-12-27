@@ -4,19 +4,19 @@ Firefox and Chrome extension extension moves Mountain Project comments with a vi
 
 ## Installation
 
-Get it from the [Chrome Web Store](https://chromewebstore.google.com/detail/mountain-project-beta-vid) or [Firefox Store](https://addons.mozilla.org/en-US/firefox/addon/mountain-project-beta-videos/)
+Get it from the [Chrome Web Store](https://chromewebstore.google.com/detail/mountain-project-beta-vid/maedjjnmjpoekckpdfpldbhcehghbenc) or [Firefox Store](https://addons.mozilla.org/en-US/firefox/addon/mountain-project-beta-videos/)
 
 ## Change Log
 
 V1.2
--Now compatible with Firefox for Android
--Added an option to hide comments rather than moving them to a video gallery
--Added an options page to control this setting (defaults to off)
--Improved layout on smaller screens
+- Now compatible with Firefox for Android
+- Added an option to hide comments rather than moving them to a video gallery
+- Added an options page to control this setting (defaults to off)
+- Improved layout on smaller screens
 
 V1.1
--Improved speed and reliability
--Updated to manifest v3 to for compatibility with Chrome
+- Improved speed and reliability
+- Updated to manifest v3 to for compatibility with Chrome
 
 ## License
 
