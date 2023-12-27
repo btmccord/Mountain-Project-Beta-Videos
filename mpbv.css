@@ -1,7 +1,7 @@
 /*  
 Mountain Project Beta Videos
 Main CSS
-Version 1.1
+Version 1.2
 */
 
 #mpbv-videos {
@@ -20,7 +20,7 @@ Version 1.1
   display: none;
 }
 
-.mpbv-note {
+#mpbv-note {
   padding-left: .5rem;
   font-size: .9rem;
   font-style: italic;

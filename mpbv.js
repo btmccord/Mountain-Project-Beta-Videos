@@ -1,11 +1,20 @@
 // Mountain Project Beta Videos
 // Main content script
-// Version 1.1
+// Version 1.2
+
+var browser;
+if (typeof browser === "undefined") {
+    browser = chrome;
+}
 
 //Decalre constants
 const commentListIdBase =  'comments-Climb-Lib-Models-Route-';
 const linkRe = /youtu\.*be\.*\w*\/(?:watch\?v=)?([^\?&\s]*)/im;
 const baseEmbedUrl = 'https://www.youtube.com/embed/';
+
+const noteText = ' comments moved to video section )';
+const noteTextHidden = ' comments hidden | ';
+const unhideText= 'Show hidden comments';
 
 //Video class
 class Video {
@@ -43,6 +52,10 @@ function getVids() {
             let href = link.getAttribute('href');
             let ytLinks = linkRe.exec(href);
             if (ytLinks != null) {
+                if (hideComments) {
+                    comment.classList.add("mpbv-hidden");
+                    continue;
+                }
                 let url = baseEmbedUrl.concat(ytLinks[1]);
                 link.classList.add("mpbv-hidden");
                 let author,
@@ -97,22 +110,64 @@ function getVids() {
         let commentDiv = commentListDiv.parentElement;
         let parentDiv = commentDiv.parentElement;
         parentDiv.insertBefore(videosSection,commentDiv);
-
-        //Update comment count
-        let hiddenComments = commentListDiv.querySelectorAll("table.mpbv-hidden").length;
-        let newCommentsNum = comments.length - hiddenComments;
-        let commentHeader = commentListDiv.children[0];
-        commentHeader.children[0].innerText = newCommentsNum + ' Comments';
-
-        //Add note
-        let note = document.createElement('span');
-        note.className = "mpbv-note";
-        note.innerText = '( ' + hiddenComments + ' comments moved to video section )';
-        commentHeader.appendChild(note);
-        
-        
+ 
     } 
+
+    if (videoList.length >=1 || hideComments) {
+            //Update comment count
+            let hiddenComments = commentListDiv.querySelectorAll("table.mpbv-hidden").length;
+            let newCommentsNum = comments.length - hiddenComments;
+            let commentHeader = commentListDiv.children[0];
+            commentHeader.children[0].innerText = newCommentsNum + ' Comments';
+    
+            //Add note
+            let note = document.createElement('span');
+            note.id = "mpbv-note";
+            if (hideComments) {
+                let showButton = document.createElement('a');
+                let paren = document.createElement('span');
+                note.innerText = '( ' + hiddenComments + noteTextHidden;
+                showButton.innerText = unhideText;
+                showButton.onclick = restoreComments;
+                paren.innerText = " )";
+                note.appendChild(showButton);
+                note.appendChild(paren);
+            } else {
+                note.innerText = '( ' + hiddenComments + noteText;
+            }
+            commentHeader.appendChild(note);
+    }
 } 
+
+function restoreComments() {
+    //Remove hidden class and hide the note
+    let commentListDiv = document.getElementById(commentListId);
+    let comments = commentListDiv.getElementsByTagName("table");
+
+    for (const comment of comments) {
+        comment.classList.remove("mpbv-hidden");
+    }
+
+    let note = document.getElementById("mpbv-note");
+    note.classList.add("mpbv-hidden");
+}
+
+function onError(error) {
+    console.log(`Error: ${error}`);
+  }
+  
+function onGotSettings(item) {
+    if (item.hideComments) {
+      hideComments = item.hideComments;
+    }
+  }
+
+//  Init hideComments setting var
+let hideComments = false;
+ 
+// Get settings
+const getSettings = browser.storage.sync.get("hideComments");
+getSettings.then(onGotSettings, onError);
 
 // Listen for comments to finish loading
 const observer = new MutationObserver((mutationList) => {
@@ -123,7 +178,7 @@ const observer = new MutationObserver((mutationList) => {
     }
 });
 
-observer.observe(document.getElementById(commentListId), {
+observer.observe(document.getElementsByClassName("comment-list")[0], {
     childList: true,
     subtree: true,
 });
