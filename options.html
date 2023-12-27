@@ -3,15 +3,100 @@ Main content script
 Version 1.2 -->
 
 <!doctype html>
-<html lang="en" style="background-color: inherit;">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
+    <style>
+      body {
+        font-family: sans-serif;
+        font-size: 3vw;
+        padding: 0 1em;
+      }
+
+      button {
+        margin: 1em 0;
+      }
+
+      .sub {
+        font-style: italic;
+        font-size: .8em;
+        margin: .5em 0;
+        padding: .5em 0;
+      }
+
+      .optionRow {
+        display: flex;
+      }
+
+      .optionRow span {
+        flex-grow: 2;
+      }
+
+      #submit_success.show {
+        display: inline !important;
+      }
+
+      #submit_success {
+        color: rgb(59, 121, 59);
+        font-style: italic;
+        font-size: .8em;
+        display: none;
+      }
+
+      .switch {
+        position: relative;
+        display: block;
+        width: 2.2em;
+        height: 1.2em;
+        background-color: rgba(0, 0, 0, 0.25);
+        border-radius: 1.2em;
+        transition: all 0.3s;
+      }
+      .switch::after {
+        content: '';
+        position: absolute;
+        width: 1em;
+        height: 1em;
+        border-radius:50%;
+        background-color: white;
+        top: .1em;
+        left: .1em;
+        transition: all 0.3s;
+      }
+
+      .checkbox:checked + .switch::after {
+        left : 1.1em;
+      }
+      .checkbox:checked + .switch {
+        background-color: #2359df;
+      }
+
+      .checkbox {
+        position: relative;
+        top: -.2em;
+        left: 3.6em;
+        z-index: 2;
+        opacity: 0;
+        width: 3.4em;
+        height: 1.7em;
+      }
+
+    </style>
   </head>
 
   <body>
     <form>
-      <label>Hide Comments <input type="checkbox" id="hideComments" name="hideComments" /></label>
-      <button type="submit">Save</button>
+      <div><h4>Mountain Project Beta Videos Settings</h4></div>
+      <div class="optionRow">
+        <span>Hide Comments</span>
+        <input type="checkbox" id="hideComments" name="hideComments" class="checkbox"/>
+        <label for="toggle" class="switch"></label>
+      </div>
+      <div class="sub">Enabling this option will hide all comments that contain youtube links. A link to restore them is also provided</div>
+      <div>
+        <button type="submit">Save</button>
+        <span id="submit_success">Successfully saved!</span>
+      </div>
     </form>
 
     <script src="options.js"></script>

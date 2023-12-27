@@ -12,6 +12,10 @@ function saveOptions(e) {
     browser.storage.sync.set({
       hideComments: document.querySelector("#hideComments").checked,
     });
+    document.getElementById("submit_success").classList.add("show");
+    document.getElementById("hideComments").addEventListener("click", function(){
+      document.getElementById("submit_success").classList.remove("show");
+    })
   }
   
   function restoreOptions() {
