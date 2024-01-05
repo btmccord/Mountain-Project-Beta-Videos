@@ -8,6 +8,9 @@ Get it from the [Chrome Web Store](https://chromewebstore.google.com/detail/moun
 
 ## Change Log
 
+V1.3
+- Fix alternating background colors in comments
+
 V1.2
 - Now compatible with Firefox for Android
 - Added an option to hide comments rather than moving them to a video gallery

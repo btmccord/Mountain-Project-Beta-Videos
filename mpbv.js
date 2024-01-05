@@ -1,6 +1,6 @@
 // Mountain Project Beta Videos
 // Main content script
-// Version 1.2
+// Version 1.3
 
 var browser;
 if (typeof browser === "undefined") {
